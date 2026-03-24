@@ -7,7 +7,7 @@
 # =============================================================================
 
 from dataclasses import dataclass, field
-
+from app.settings import settings
 
 @dataclass
 class DBConfig:
@@ -46,26 +46,26 @@ class DBConfig:
 # PRIMARY  (handles all writes + reads when no replica is available)
 # -----------------------------------------------------------------------------
 PRIMARY_CONFIG = DBConfig(
-    host="db-primary.internal",
-    database="myapp",
-    user="app_user",
-    password="strong-secret",
-    port=5432,
-    pool_size=10,
-    max_overflow=20,
+    host=settings.HOST,
+    database=settings.DATABASE,
+    user=settings.USER,
+    password=settings.PASSWORD,
+    port=settings.PORT,
+    pool_size=settings.POOL_SIZE,
+    max_overflow=settings.MAX_OVERFLOW,
 )
 
 # -----------------------------------------------------------------------------
 # REPLICA  (handles read-only queries)
 # -----------------------------------------------------------------------------
 REPLICA_CONFIG = DBConfig(
-    host="db-replica.internal",
-    database="myapp",
-    user="app_readonly",  # use a read-only Postgres role here
-    password="readonly-secret",
-    port=5432,
-    pool_size=20,  # replicas can absorb more concurrent reads
-    max_overflow=40,
+    host=settings.HOST,
+    database=settings.DATABASE,
+    user=settings.USER,  # use a read-only Postgres role here
+    password=settings.PASSWORD,
+    port=settings.PORT,
+    pool_size=settings.POOL_SIZE,  # replicas can absorb more concurrent reads
+    max_overflow=settings.MAX_OVERFLOW,
 )
 
 # -----------------------------------------------------------------------------
