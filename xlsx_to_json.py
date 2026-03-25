@@ -80,7 +80,6 @@ def combine_xlsx_to_json(
     return out_path
 
 
-
 if __name__ == "__main__":
     base = Path(rf"D:\office\code\spirix resource\processed")
     combine_xlsx_to_json(
