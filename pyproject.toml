@@ -8,7 +8,15 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "pypdf (>=6.8.0,<7.0.0)",
-    "openpyxl (>=3.1.5,<4.0.0)"
+    "openpyxl (>=3.1.5,<4.0.0)",
+    "fastapi (>=0.116.1,<0.117.0)",
+    # Cap <0.39: uvicorn 0.39+ passes loop_factory to asyncio.run(); PyCharm's
+    # debugger patches asyncio.run and rejects that kwarg (TypeError).
+    "uvicorn (>=0.34.0,<0.39.0)",
+    "sqlalchemy (>=2.0.43,<3.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "pydantic-settings (>=2.11.0,<3.0.0)",
+    "python-multipart (>=0.0.20,<0.0.21)"
 ]
 
 
